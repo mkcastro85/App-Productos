@@ -1,0 +1,114 @@
+﻿<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="Content/angular-material.css">
+    <link rel="stylesheet" href="Content/Style.css">
+</head>
+<body ng-app="ProductApp" ng-cloak>
+
+    <div id="meyling" ng-controller="ProductController" layout="column" ng-cloak>
+        <div id="Container">
+
+            <md-content layout-padding>
+                <form name="projectForm">
+
+                    <md-input-container class="md-block">
+                        <label> Nombre del producto</label>
+                        <input md-maxlength="100" required md-asterisk name="Nombre" ng-model="Product.Nombre">
+
+                        <div ng-messages="projectForm.Nombre.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Sku del producto</label>
+                        <input md-maxlength="30" required md-asterisk name="Sku" ng-model="Product.Sku">
+
+                        <div ng-messages="projectForm.Sku.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Breve descripcion del producto</label>
+                        <input md-maxlength="30" md-no-asterisk name="Descripcion" ng-model="Product.Descripcion">
+
+                        <div ng-messages="projectForm.descripcion.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+
+                    <md-input-container class="md-block">
+                        <label>Cantidad del producto</label>
+                        <input md-maxlength="30" md-asterisk name="Cantidad" ng-model="Product.Cantidad" ng-pattern="/^([0-9])*$/">
+
+                        <div ng-messages="projectForm.Cantidad.$error">
+                            <div ng-message="pattern">Debe contener numeros.</div>
+                            <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Id Categoria</label>
+                        <input type="number" md-maxlength="30" md-no-asterisk name="IdCategoria" ng-model="Product.IdCategoria">
+
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-button md-no-ink class="md-primary" ng-click="functions.addProduct()">Agregar</md-button>
+
+                </form>
+            </md-content>
+        </div>
+        <table id="customers" class="my style">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>SKU</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Categoria</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            <tr ng-repeat="data in product">
+                <td>{{data.Id}}</td>
+                <td>{{data.Nombre}}</td>
+                <td>{{data.Sku}}</td>
+                <td>{{data.Descripcion}}</td>
+                <td>{{data.Cantidad}}</td>
+                <td>{{data.IdCategoria}}</td>
+                <td><md-button md-no-ink class="md-primary" ng-click="functions.deleteProduct(data)">Eliminar</md-button></td>
+                <td><md-button md-no-ink class="md-primary" ng-click="functions.loadForm(data)">Actualizar</md-button></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria.min.js"></script>
+    <script src="Scripts/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="Scripts/angular-material.min.js"></script>
+
+
+    <script src="Scripts/App/App.js"></script>
+    <script src="Scripts/App/Controller/ProductController.js"></script>
+    <script src="Scripts/App/Services/ProductServices.js"></script>
+
+</body>
+</html>
