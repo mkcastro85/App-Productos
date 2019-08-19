@@ -47,6 +47,7 @@
     function loadForm(product) {
         console.log(product);
         $scope.Product = {
+            Id: product.Id,
             Nombre: product.Nombre,
             Sku: product.Sku,
             Descripcion: product.Descripcion,
@@ -86,6 +87,7 @@
 
     function init() {
         $scope.Product = {
+            
             Nombre: "",
             Sku: "",
             Descripcion: "",
